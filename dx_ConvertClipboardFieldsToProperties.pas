@@ -12,6 +12,7 @@ uses
   Windows;
 
 //1.0 dkm 2016-01-01 Initial creation
+//1.1 dkm 2016-01-02 Issue #1: Strip inline comments
 procedure ConvertClipboardFieldsToProperties();
 var
   vClipboard:TClipboard;
@@ -19,7 +20,7 @@ var
   vOutputString:String;
   i:Integer;
   vLine:String;
-  vColonIndex:Integer;
+  vPos:Integer;
   vFieldName:String;
   vClassType:String;
 begin
@@ -37,17 +38,23 @@ begin
         begin
           //convert lines like: "FMyName:MyType;"
           //to "    property MyName:MyType read fMyName write fMyName"
-          vColonIndex := Pos(':', vLine);
-          if vColonIndex > 1 then
+          vPos := Pos(':', vLine);
+          if vPos > 1 then
           begin
-            vFieldName := Trim(Copy(vLine, 1, vColonIndex - 1));
-            vClassType := Trim(Copy(vLine, vColonIndex + 1, Length(vLine) - vColonIndex -1));
+            vFieldName := Trim(Copy(vLine, 1, vPos - 1));
+            vClassType := Trim(Copy(vLine, vPos + 1, Length(vLine) - vPos -1));
+            vPos := Pos(';', vClassType);
+            if vPos > -1 then
+            begin
+              //strip everything past the ;  (Comments)
+              vClassType := Copy(vClassType, 1, vPos);
 
-            vOutputString := vOutputString
-                             + '    property '
-                             + Copy(vFieldName, 2, Length(vFieldname) - 1)
-                             + ':' + vClassType
-                             + ' read ' + vFieldName + ' write ' + vFieldName + ';' + #13#10;
+              vOutputString := vOutputString
+                               + '    property '
+                               + Copy(vFieldName, 2, Length(vFieldname) - 1)
+                               + ':' + vClassType
+                               + ' read ' + vFieldName + ' write ' + vFieldName + ';' + #13#10;
+            end;
           end;
         end;
       end;
