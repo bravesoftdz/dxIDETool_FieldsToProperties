@@ -1,0 +1,2 @@
+http://ionicons.com/
+MIT License
