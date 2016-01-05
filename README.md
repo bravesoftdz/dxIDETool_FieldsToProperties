@@ -27,3 +27,6 @@ private
     property Prop1:String read fProp1 write fProp1;
     property Prop2:Integer read fProp2 write fProp2;
 ````
+
+Note:  Class completion is built-into the Delphi IDE and I use it often.  However, I don't always add a Setter to my fields and this is a simple way to define properties in a different format.  Likely the best tool which offers this functionality (as just one of its many features) is ModelMaker Code Explorer: http://www.modelmakertools.com/code-explorer/index.html
+
