@@ -57,12 +57,12 @@ begin
           if vPos > 1 then
           begin
             vFieldName := Trim(Copy(vLine, 1, vPos - 1));
-            vClassType := Trim(Copy(vLine, vPos + 1, Length(vLine) - vPos -1));
+            vClassType := Trim(Copy(vLine, vPos + 1, Length(vLine) - vPos));
             vPos := Pos(';', vClassType);
             if vPos > -1 then
             begin
               //strip everything past the ;  (Comments)
-              vClassType := Copy(vClassType, 1, vPos);
+              vClassType := Copy(vClassType, 1, vPos-1);
 
               vOutputString := vOutputString + vIndent
                                + 'property '
