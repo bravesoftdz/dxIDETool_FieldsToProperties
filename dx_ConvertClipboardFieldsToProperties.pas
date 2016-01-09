@@ -38,7 +38,7 @@ begin
         vIndent := '';
         for j := 1 to Length(vLine) do
         begin
-          if vLine[j] in [#9,#32] then //keep original whitespace
+          if (vLine[j]=#9) or (vLine[j]=#32) then //keep original whitespace
           begin
             vIndent := vIndent + vLine[j];
           end
