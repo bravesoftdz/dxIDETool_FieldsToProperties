@@ -1,5 +1,9 @@
+<i>Deprecated: External .exe replaced by ToolsAPI integration found at: https://github.com/darianmiller/dxIDEPackage_CustomKeyBindings</I>
+
 # dxIDETool_FieldsToProperties.exe
 Simple IDE tool to convert a list of fields to properties via the clipboard
+
+Original Google+ post: https://plus.google.com/+DarianMiller/posts/6miw2hVkdRW
 
 <h3>One Time Setup:</h3>
 Add a new item to the Tools menu:<br/>
